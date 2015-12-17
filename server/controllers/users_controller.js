@@ -16,6 +16,35 @@ function show(req, res){
     res.json(user)
   })
 }
+function update(req,res) {
+  User.findById(req.params.user_id, function(err, user) {
+
+			if (err) res.send(err);
+
+			// set the new user information if it exists in the request
+			if (req.body.name) user.name = req.body.name;
+			if (req.body.username) user.username = req.body.username;
+			if (req.body.password) user.password = req.body.password;
+
+			// save the user
+			user.save(function(err) {
+				if (err) res.send(err);
+
+				// return a message
+				res.json({ message: 'User updated!' });
+			});
+
+		});
+}
+function destroy(req,res){
+    User.remove({
+    _id: req.params.user_id
+  }, function(err, user) {
+    if (err) res.send(err);
+
+    res.json({ message: 'Successfully deleted' });
+  });
+}
 function signIn(req,res){
   User.findOne({ email: req.body.email} , function(err,user){
     if(err) res.json({err: err})
@@ -54,5 +83,7 @@ module.exports = {
   createUser: create,
   findUser: show,
   signIn: signIn,
-  addGreens: addGreen
+  addGreens: addGreen,
+  deleteUser: destroy,
+  updateUser: update
 }

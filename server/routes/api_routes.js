@@ -26,9 +26,15 @@ apiRouter.route('/signin')
  apiRouter.route('/users/:email')
   .get(usersController.findUser)
   .post(usersController.addGreens)
+  .put(usersController.updateUser)
+  .delete(usersController.deleteUser)
 apiRouter.route('/greens')
   .get(greensController.allGreens)
   .post(greensController.addGreen)
 apiRouter.route('/greens/:id')
   .get(greensController.showGreen)
+
+apiRouter.get('/me', function(req, res) {
+	res.send(req.decoded);
+});
 module.exports = apiRouter

@@ -1,60 +1,49 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="greenSpace">
 
 
 </html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>GreenShare</title>
+  <title>Green Space</title>
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/main.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-  <script src="//use.edgefonts.net/vast-shadow:n4:all.js"></script>
-  <script src="//use.edgefonts.net/vast-shadow:n4:all;megrim.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-animate.js"></script>
+
+  <!-- angular files -->
+  <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="/js/mainController.js"></script>
+  <script type="text/javascript" src="/js/userController.js"></script>
+  <script type="text/javascript" src="app.routes.js"></script>
+  <script type="text/javascript" src="/js/userService.js"></script>
+	<script type="text/javascript" src="/js/authService.js"></script>
 
 </head>
-<body>
-
-  <div class="todo-wrapper" ng-controller="TodoCtrl">
-    <h2>You've got <span class="emphasis">{{getTotalTodos()}}</span> things to do</h2>
-    <ul>
-      <li ng-repeat="todo in todos">
-        <input type="checkbox" ng-model="todo.done"/>
-        <span class="done-{{todo.done}}">{{todo.text}}</span>
-      </li>
-    </ul>
-    <form>
-      <input class="add-input" placeholder="I need to..." type="text" ng-model="formTodoText" ng-model-instant />
-      <button class="add-btn" ng-click="addTodo()"><h2>Add</h2></button>
-    </form>
-
-    <button class="clear-btn" ng-click="clearCompleted()">Clear completed</button>
-  </div>
-
-  
+<body ng-controller="mainController as main">
   <nav class="teal teal-darken-4" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="#" class="brand-logo">Logo</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
+        <li><a href="#/login">Login</a></li>
       </ul>
-
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">Menu</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-
+<div ng-view>
   <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
       <div class="container">
-        <h1 class="header center teal-text text-darken-4">Green Share</h1>
+        <h1 class="header center teal-text text-darken-4">Green Space</h1>
         <br><br>
         <div class="row center">
           <h5 class="header col s12 light">Go Green While Saving Green</h5>
@@ -63,52 +52,38 @@
           <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal darken-4">Get Started</a>
         </div>
         <br><br>
-
-
-
       </div>
     </div>
-    <div class="parallax"><img src="background1.jpg" alt="Unsplashed background img 1"></div>
+    <div class="parallax"><img src="/images/background1.jpg" alt="Unsplashed background img 1"></div>
   </div>
-
-
   <div class="container">
     <div class="section">
-
       <!--   Icon Section   -->
       <div class="row">
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
             <h5 class="center">Green Deed Randomizer</h5>
-
             <p class="light">We believe mixing up your activities. Whenever you're feeling green, our randomizer will select planet-saving deeds for you to accomplish. </p>
           </div>
         </div>
-
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">group</i></h2>
             <h5 class="center">Share Progress With Friends</h5>
-
             <p class="light">Post on social media something other than cute animals or your dinner. Share your environmental endeavors with your friends to give them green-FOMO.</p>
           </div>
         </div>
-
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
             <h5 class="center">Set Goals</h5>
-
             <p class="light">Set goals for yourself each week by pushing your limit with more planet-saving activities.</p>
           </div>
         </div>
       </div>
-
     </div>
   </div>
-
-
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
       <div class="container">
@@ -117,12 +92,10 @@
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="background2.jpg" alt="Unsplashed background img 2"></div>
+    <div class="parallax"><img src="/images/background2.jpg" alt="Unsplashed background img 2"></div>
   </div>
-
   <div class="container">
     <div class="section">
-
       <div class="row">
         <div class="col s12 center">
           <h3><i class="mdi-content-send brown-text"></i></h3>
@@ -130,11 +103,8 @@
           <p class="left-align light">Explore awesome places with groups of people throughout the world. Make your trip an extraordinarily unforgettable and rewarding experience while contributing to our global community.</p>
         </div>
       </div>
-
     </div>
   </div>
-
-
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
       <div class="container">
@@ -143,17 +113,15 @@
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="background3.jpg" alt="Unsplashed background img 3"></div>
+    <div class="parallax"><img src="images/background3.jpg" alt="Unsplashed background img 3"></div>
   </div>
-
+</div>
   <footer class="page-footer teal">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
           <h5 class="white-text">Company Bio</h5>
           <p class="grey-text text-lighten-4">Just trying to save the planet, NBD.</p>
-
-
         </div>
         <div class="col l3 s12">
           <h5 class="white-text">Settings</h5>
@@ -179,265 +147,5 @@
     </div>
   </footer>
 
-
-  <!--  Scripts-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
-  <!-- <script type="text/babel" src="js/react.js"></script> -->
-  <!-- <script type="text/babel"> -->
-  <!-- console.log("react is running");
-   var SearchPanel = React.createClass({ -->
-<!-- //     render: function() {
-//       return (
-//         <div className="row">
-//           <div className="one-fourth column">
-//             Filter: &nbsp;
-//             <input ref='search' type='text' value={this.props.search} onChange={this.onSearchChanged} />
-//             {this.props.search?<button onClick={this.props.onClearSearch} >x</button>:null}
-//           </div>
-//         </div>
-//       )
-//     },
-//     onSearchChanged: function() {
-//       var query = React.findDOMNode(this.refs.search).value;
-//       this.props.onSearchChanged(query);
-//     }
-//     });
-//     var BookTableRow = React.createClass({
-//   render: function() {
-//     return (
-//       <tr>
-//         <td>{this.props.book.title}</td>
-//         <td>{this.props.book.category}</td>
-//         <td><a href='#' onClick={this.onClick}>Edit</a></td>
-//       </tr>
-//     );
-//   },
-//   onClick: function(id) {
-//     this.props.handleEditClickPanel(this.props.book.id);
-//   }
-//   });
-//   var BookTable = React.createClass({
-//   render: function() {
-//     var rows = [];
-//     this.props.books.forEach(function(book) {
-//       rows.push(<BookTableRow key={book.id} book={book} handleEditClickPanel={this.props.handleEditClickPanel}  />);
-//     }.bind(this));
-//     return (
-//       <table>
-//         <thead>
-//           <tr>
-//             <th>Title</th>
-//             <th>Category</th>
-//             <th>Edit</th>
-//           </tr>
-//         </thead>
-//         <tbody>{rows}</tbody>
-//       </table>
-//     );
-//   }
-//   });
-//   var BookForm = React.createClass({
-//   render: function() {
-//     return(
-//       <form onSubmit={this.props.handleSubmitClick}>
-//         <label forHtml='title'>Title</label><input ref='title' name='title' type='text' value={this.props.book.title} onChange={this.onChange}/>
-//         <label forHtml='category'>Category</label>
-//         <select ref='category' name='category' value={this.props.book.category} onChange={this.onChange} >
-//           <option value='CRIME' >Crime</option>
-//           <option value='HISTORY'>History</option>
-//           <option value='HORROR'>Horror</option>
-//           <option value='SCIFI'>SciFi</option>
-//         </select>
-//         <br />
-//         <input type='submit' value={this.props.book.id?"Save (id = " +this.props.book.id+ ")":"Add"} />
-//         {this.props.book.id?<button onClick={this.props.handleDeleteClick}>Delete</button>:null}
-//         {this.props.book.id?<button onClick={this.props.handleCancelClick}>Cancel</button>:null}
-//         {this.props.message?<div>{this.props.message}</div>:null}
-//       </form>
-//     );
-//   },
-//   onChange: function() {
-//     var title = React.findDOMNode(this.refs.title).value;
-//     var category = React.findDOMNode(this.refs.category).value;
-//     this.props.handleChange(title, category);
-//   }
-// });
-// var BookPanel = React.createClass({
-//   getInitialState: function() {
-//     return {
-//       books: [],
-//       editingBook: {
-//         title:"",
-//         category:"",
-//       },
-//       search:"",
-//       message:""
-//     };
-//   },
-//   render: function() {
-//     return(
-//       <div className="row">
-//         <div className="one-half column">
-//           <SearchPanel
-//             search={this.state.search}
-//             onSearchChanged={this.onSearchChanged}
-//             onClearSearch={this.onClearSearch}
-//           />
-//           <BookTable books={this.state.books} handleEditClickPanel={this.handleEditClickPanel} />
-//         </div>
-//         <div className="one-half column">
-//           <BookForm
-//             book={this.state.editingBook}
-//             message={this.state.message}
-//             handleChange={this.handleChange}
-//             handleSubmitClick={this.handleSubmitClick}
-//             handleCancelClick={this.handleCancelClick}
-//             handleDeleteClick={this.handleDeleteClick}
-//           />
-//         </div>
-//       </div>
-//     );
-//   },
-//   componentDidMount: function() {
-//     this.reloadBooks('');
-//   },
-//   onSearchChanged: function(query) {
-//   if (this.promise) {
-//     clearInterval(this.promise)
-//   }
-//   this.setState({
-//     search: query
-//   });
-//   this.promise = setTimeout(function () {
-//     this.reloadBooks(query);
-//   }.bind(this), 200);
-// },
-// onClearSearch: function() {
-//   this.setState({
-//     search: ''
-//   });
-//   this.reloadBooks('');
-// },
-// handleEditClickPanel: function(id) {
-//   var book = $.extend({}, this.state.books.filter(function(x) {
-//     return x.id == id;
-//   })[0] );
-//
-//   this.setState({
-//     editingBook: book,
-//     message: ''
-//   });
-// },
-// handleChange: function(title, category) {
-//   this.setState({
-//     editingBook: {
-//       title: title,
-//       category: category,
-//       id: this.state.editingBook.id
-//     }
-//   });
-// },
-// handleCancelClick: function(e) {
-//   e.preventDefault();
-//   this.setState({
-//     editingBook: {}
-//   });
-// },
-// reloadBooks: function(query) {
-//   $.ajax({
-//     url: this.props.url+'?search='+query,
-//     dataType: 'json',
-//     cache: false,
-//     success: function(data) {
-//       this.setState({
-//         books: data
-//       });
-//     }.bind(this),
-//     error: function(xhr, status, err) {
-//       console.error(this.props.url, status, err.toString());
-//       this.setState({
-//         message: err.toString(),
-//         search: query
-//       });
-//     }.bind(this)
-//   });
-// },
-// handleSubmitClick: function(e) {
-//   e.preventDefault();
-//   if(this.state.editingBook.id) {
-//     $.ajax({
-//       url: this.props.url+this.state.editingBook.id,
-//       dataType: 'json',
-//       method: 'PUT',
-//       data:this.state.editingBook,
-//       cache: false,
-//       success: function(data) {
-//         this.setState({
-//           message: "Successfully updated book!"
-//         });
-//         this.reloadBooks('');
-//       }.bind(this),
-//       error: function(xhr, status, err) {
-//         console.error(this.props.url, status, err.toString());
-//         this.setState({
-//           message: err.toString()
-//         });
-//       }.bind(this)
-//     });
-//   } else {
-//     $.ajax({
-//       url: this.props.url,
-//       dataType: 'json',
-//       method: 'POST',
-//       data:this.state.editingBook,
-//       cache: false,
-//       success: function(data) {
-//         this.setState({
-//           message: "Successfully added book!"
-//         });
-//         this.reloadBooks('');
-//       }.bind(this),
-//       error: function(xhr, status, err) {
-//         console.error(this.props.url, status, err.toString());
-//         this.setState({
-//           message: err.toString()
-//         });
-//       }.bind(this)
-//     });
-//   }
-//   this.setState({
-//     editingBook: {}
-//   });
-// },
-// handleDeleteClick: function(e) {
-// e.preventDefault();
-// $.ajax({
-//   url: this.props.url+this.state.editingBook.id,
-//   method: 'DELETE',
-//   cache: false,
-//   success: function(data) {
-//     this.setState({
-//         message: "Successfully deleted book!",
-//         editingBook: {}
-//     });
-//     this.reloadBooks('');
-//   }.bind(this),
-//   error: function(xhr, status, err) {
-//     console.error(this.props.url, status, err.toString());
-//     this.setState({
-//         message: err.toString()
-//     });
-//   }.bind(this)
-//   });
-// },
-// });
-// ReactDOM.render(<BookPanel />, document.getElementById('test'));
-//
-//   </script> -->
   </body>
 </html>
