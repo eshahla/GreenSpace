@@ -1,0 +1,51 @@
+<div class="row center">
+  <a href="#green" class="btn-large waves-effect waves-light teal lighten-1" modal>Create Green Item</a>
+</div>
+<div class="row">
+  <div class="col s12 m3" ng-repeat="green in main.greens">
+    <div class="card lime darken-4">
+      <div class="card-content white-text">
+        <span class="card-title">{{green.title}}</span>
+        <div class="">
+          <hr>
+          <a  href="#!"><i class="material-icons">grade</i></a>
+          <a  href="#!"><i class="material-icons">grade</i></a>
+          <a  href="#!"><i class="material-icons">grade</i></a>
+        </div>
+        <p>{{green.desc}}</p>
+      </div>
+      <div class="card-action">
+        <a ng-click="main.addMyGreen(green._id)"class="btn-floating btn-large waves-effect waves-light red pull-left"><i class="material-icons">add</i></a>
+        <a class="btn-floating btn-large red pull right">
+          <i class="large material-icons">mode_edit</i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="green">
+  <form class="col s12" ng-submit="main.createGreen()">
+    <div class="row">
+      <div class="input-field col s4">
+        <i class="material-icons prefix">title</i>
+        <input id="icon_prefix" type="text" class="validate" ng-model="main.green.title">
+        <label for="icon_prefix">title</label>
+      </div>
+      <div class="input-field col s4">
+        <i class="material-icons prefix">pencil</i>
+        <input id="icon_lock" type="text" class="validate" ng-model="main.green.desc">
+        <label for="icon_lock">description</label>
+      </div>
+      <div class="input-field col s4">
+        <i class="material-icons prefix">pen</i>
+        <input id="icon_lock" type="number" class="validate" ng-model="main.green.level">
+        <label for="icon_lock">level</label>
+      </div>
+      <div class="input-field col s4">
+        <button type="submit" class="modal-action modal-close waves-effect btn">
+          <span >Create</span>
+        </button>
+      <div>
+    </div>
+  </form>
+</div>

@@ -1,8 +1,8 @@
 var Green = require('../models/green.js')
 
 function create(req, res){
-  console.log("Creating a green:", req.body.green);
-  var green = new Green(req.body.green)
+  console.log("Creating a green:", req.body);
+  var green = new Green(req.body)
   green.save(function(err){
     if(err) res.json({ err: err})
     res.json({ message: 'Green Created!'})

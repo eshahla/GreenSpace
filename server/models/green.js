@@ -5,6 +5,7 @@ var mongoose = require('mongoose')
       , desc: {type: String, required: true}
       , level: {type: Number, required: true}
       , pic: String
+      , _creator: {type: Number, ref: 'User'}
     })
 
 

@@ -1,4 +1,4 @@
-angular.module('greenSpace', ['ngAnimate', 'app.routes', 'mainCtrl', 'userCtrl', 'userService','authService'])
+angular.module('greenSpace', ['ui.materialize','ngAnimate', 'app.routes', 'mainCtrl', 'userCtrl', 'userService','authService'])
 
 // application configuration to integrate token into requests
 .config(function($httpProvider) {

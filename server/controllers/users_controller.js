@@ -4,14 +4,18 @@ var User = require('../models/user.js')
   , secret = 'boom'
 
 function create(req, res){
-  var user = new User(req.body.user)
-  user.save(function(err){
+  console.log(req.body);
+  var user = new User(req.body)
+  user.save(function(err,user){
     if(err) res.json({ err: err})
     res.json({ message: 'User Created!'})
   })
 }
 function show(req, res){
-  User.find({email: req.params.email},function(err,user){
+  User.findOne({email: req.decoded.email})
+  .populate('compGreens')
+  .populate('pendGreens')
+  .exec(function(err,user){
     if(err) res.json({err: err})
     res.json(user)
   })
@@ -46,13 +50,14 @@ function destroy(req,res){
   });
 }
 function signIn(req,res){
+  console.log(req.body);
   User.findOne({ email: req.body.email} , function(err,user){
     if(err) res.json({err: err})
     if(user){
       if(user.authenticate(req.body.password))
         {
           var token = jwt.sign({
-            name: user.name,
+            id: user._id,
             email: user.email
           },
           secret,
@@ -60,7 +65,7 @@ function signIn(req,res){
             expiresInMinutes: 1440
           })
 
-        res.json({token: token, message: "valid user"})
+        res.json({token: token, message: "valid user",success: true})
         }
       else
         res.json({ message: "invalid user"})
@@ -72,10 +77,20 @@ function signIn(req,res){
 function addGreen(req,res) {
   Green.findById(req.body.greenId, function (err, green) {
     if(err) res.json({err: err})
-    User.findOne({email: req.params.email},function(err,user){
+    User.findOne({email: req.decoded.email},function(err,user){
       user.adGreen(green)
       if(err) res.json({err: err})
       res.json({message: "green added to user"})
+    })
+  })
+}
+function compGreens(req,res) {
+  Green.findById(req.body.greenId, function (err, green) {
+    if(err) res.json({err: err})
+    User.findOne({email: req.decoded.email},function(err,user){
+      user.finishGreen(green, req.body.greenIndex)
+      if(err) res.json({err: err})
+      res.json({message: "completed green item"})
     })
   })
 }
@@ -85,5 +100,6 @@ module.exports = {
   signIn: signIn,
   addGreens: addGreen,
   deleteUser: destroy,
-  updateUser: update
+  updateUser: update,
+  compGreens: compGreens
 }

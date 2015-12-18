@@ -1,0 +1,20 @@
+<div class="parallax-container">
+
+<h4 class="center teal-text darken-4 white">My Green List pending items</h2>
+<ul class="collapsible popout" data-collapsible="accordion">
+  <li ng-repeat="green in user.curUser.pendGreens track by $index" >
+    <div class="collapsible-header teal-text darken-4"><i class="material-icons">grade</i>{{green.title}}<a href="#" ng-click="user.compGreens(green.id, $index)" class=" pull-right"><i class="material-icons right">done</i></a></div>
+
+    <div class="collapsible-body teal-text darken-4 white "><p>{{green.desc}}</p></div>
+  </li>
+</ul>
+<h4 class="center teal-text darken-4 white">Completed Green List</h2>
+  <ul class="collapsible popout" data-collapsible="accordion">
+    <li ng-repeat="g in user.curUser.compGreens" >
+      <div class="collapsible-header teal-text darken-4">{{g.title}}</div>
+
+      <div class="collapsible-body white-text darken-4 teal "><p>{{g.desc}}</p></div>
+    </li>
+  </ul>
+<div parallax><img ng-src="images/ws.jpg"></div>
+</div>

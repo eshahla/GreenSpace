@@ -1,0 +1,28 @@
+<div class="row">
+    <form class="col s12" ng-submit="signup.saveUser()">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="user_name" type="text" class="validate" ng-model="signup.user.username">
+          <label for="user_name">Username</label>
+        </div>
+      </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="email" type="email" class="validate" ng-model="signup.user.email">
+            <label for="email">Email</label>
+          </div>
+        </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="password" type="password" class="validate" ng-model="signup.user.password">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <button type="submit" name="button" class="btn btn-block btn-primary">Submit</button>
+        </div>
+      </div>
+
+    </form>
+  </div>

@@ -9,7 +9,7 @@ var usersController = require('../controllers/users_controller.js')
 apiRouter.route('/signin')
    .post(usersController.signIn)
  apiRouter.use(function(req,res,next){
-  var token = req.body.token || req.param('token') || req.headers['x-access-token']
+  var token = req.body.token || req.params.token || req.headers['x-access-token']
   if(token){
     jwt.verify(token, secret, function(err,decodedToken){
       if(err) res.json({ message: 'cant authenticate'})
@@ -23,9 +23,9 @@ apiRouter.route('/signin')
 
   })
 
- apiRouter.route('/users/:email')
+ apiRouter.route('/users/me')
   .get(usersController.findUser)
-  .post(usersController.addGreens)
+  // .post(usersController.addGreens)
   .put(usersController.updateUser)
   .delete(usersController.deleteUser)
 apiRouter.route('/greens')
@@ -33,6 +33,10 @@ apiRouter.route('/greens')
   .post(greensController.addGreen)
 apiRouter.route('/greens/:id')
   .get(greensController.showGreen)
+apiRouter.route('/addGreens')
+  .post(usersController.addGreens)
+apiRouter.route('/compGreens')
+  .post(usersController.compGreens)
 
 apiRouter.get('/me', function(req, res) {
 	res.send(req.decoded);

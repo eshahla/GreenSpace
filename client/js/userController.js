@@ -1,12 +1,16 @@
 angular.module('userCtrl', ['userService'])
 
-.controller('userController', function(User) {
+.controller('userController', function(User, $http) {
 
 	var vm = this;
 
 	// set a processing variable to show loading things
 	vm.processing = true;
-
+	User.get()
+		.success(function (data) {
+			console.log("user data", data);
+			vm.curUser = data
+		})
 	// grab all the users at page load
 	User.all()
 		.success(function(data) {
@@ -36,11 +40,27 @@ angular.module('userCtrl', ['userService'])
 
 			});
 	};
+	vm.compGreens = function (green_id, deleteGreen) {
+	console.log(green_id,deleteGreen);
+		$http.post('http://localhost:3000/api/v1/compGreens', {
+			greenId: green_id,
+			greenIndex: deleteGreen
+		})
+		.success(function (data) {
+			console.log('removed Green',data)
+			User.get()
+				.success(function (data) {
+					console.log("user data", data);
+					vm.curUser = data
+					$location.reload()
+				})
+		})
+	}
 
 })
 
 // controller applied to user creation page
-.controller('userCreateController', function(User) {
+.controller('userCreateController', function(User, $location) {
 
 	var vm = this;
 
@@ -52,13 +72,16 @@ angular.module('userCtrl', ['userService'])
 	vm.saveUser = function() {
 		vm.processing = true;
 		vm.message = '';
+		console.log("======",vm.user);
 
 		// use the create function in the userService
-		User.create(vm.userData)
+		User.create(vm.user)
 			.success(function(data) {
 				vm.processing = false;
-				vm.userData = {};
+				vm.user = {};
 				vm.message = data.message;
+				$location.path('/login')
+
 			});
 
 	};

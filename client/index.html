@@ -7,144 +7,99 @@
   <title>Green Space</title>
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"> -->
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css">
+
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-animate.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-route.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-animate.js"></script>
 
   <!-- angular files -->
-  <script type="text/javascript" src="app.js"></script>
-  <script type="text/javascript" src="/js/mainController.js"></script>
-  <script type="text/javascript" src="/js/userController.js"></script>
+  <script type="text/javascript" src="js/mainController.js"></script>
+  <script type="text/javascript" src="js/userController.js"></script>
+  <script type="text/javascript" src="js/userService.js"></script>
+  <script type="text/javascript" src="js/authService.js"></script>
+  <script type="text/javascript" src="js/angular-materialize.js"></script>
   <script type="text/javascript" src="app.routes.js"></script>
-  <script type="text/javascript" src="/js/userService.js"></script>
-	<script type="text/javascript" src="/js/authService.js"></script>
+  <script type="text/javascript" src="app.js"></script>
 
 </head>
 <body ng-controller="mainController as main">
-  <nav class="teal teal-darken-4" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">Logo</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#/login">Login</a></li>
-      </ul>
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Menu</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-<div ng-view>
-  <div id="index-banner" class="parallax-container">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <h1 class="header center teal-text text-darken-4">Green Space</h1>
-        <br><br>
-        <div class="row center">
-          <h5 class="header col s12 light">Go Green While Saving Green</h5>
-        </div>
-        <div class="row center">
-          <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal darken-4">Get Started</a>
-        </div>
-        <br><br>
+  <header class="navbar-fixed">
+    <nav class="light-green accent-2" role="navigation">
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="#/" class="brand-logo center">GreenSpace</a>
+        <ul class="right hide-on-med-and-down">
+          <li ng-if="main.loggedIn" class="navbar-text"><a href="#/me" class="chip waves-effect waves-light teal lighten-1" ><i class="material-icons">home</i>{{ main.user.email }}</a></li>
+          <li ng-if="main.loggedIn"><a href="#" class="chip waves-effect waves-light lime darken-4" ng-click="main.doLogout()">Logout</a></li>
+          <li ng-if="main.loggedIn"><a href="#/greens" class="chip waves-effect waves-light lime darken-4" >Greens</a></li>
+          <li ng-if="!main.loggedIn"><a href="#login" class="chip waves-effect waves-light lime darken-4">Login</a></li>
+        </ul>
+        <ul id="nav-mobile" class="side-nav">
+          <li ng-if="main.loggedIn"><a href="#" class="chip waves-effect waves-light teal lighten-1" ng-click="main.doLogout()">Logout</a></li>
+          <li ng-if="!main.loggedIn"><a href="#login" class="chip waves-effect waves-light teal lighten-1">Login</a></li>
+          <li ng-if="main.loggedIn" class="navbar-text"><a href="/me" class="chip waves-effect waves-light teal lighten-1" ><i class="material-icons">home</i>{{ main.user.email }}</a></li>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
       </div>
-    </div>
-    <div class="parallax"><img src="images/background1.jpg" alt="Unsplashed background img 1"></div>
-  </div>
-  <div class="container">
-    <div class="section">
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Green Deed Randomizer</h5>
-            <p class="light">We believe mixing up your activities. Whenever you're feeling green, our randomizer will select planet-saving deeds for you to accomplish. </p>
-          </div>
-        </div>
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">Share Progress With Friends</h5>
-            <p class="light">Post on social media something other than cute animals or your dinner. Share your environmental endeavors with your friends to give them green-FOMO.</p>
-          </div>
-        </div>
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Set Goals</h5>
-            <p class="light">Set goals for yourself each week by pushing your limit with more planet-saving activities.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 light">Plan fun and rewarding activities with your friends.</h5>
-        </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="http://cdn.aarp.net/content/dam/aarp/politics/events-and-history/2013-07/740-millennials-saving-planet-earth-day.imgcache.rev1374686194143.web.jpg" alt="Unsplashed background img 2"></div>
-  </div>
-  <div class="container">
-    <div class="section">
-      <div class="row">
-        <div class="col s12 center">
-          <h3><i class="mdi-content-send brown-text"></i></h3>
-          <h4>Tailor Made Ecotourism Trips</h4>
-          <p class="left-align light">Explore awesome places with groups of people throughout the world. Make your trip an extraordinarily unforgettable and rewarding experience while contributing to our global community.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 light">Meet awesome people while saving and exploring the planet!</h5>
-        </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="images/background3.jpg" alt="Unsplashed background img 3"></div>
-  </div>
-</div>
-  <footer class="page-footer teal">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">Just trying to save the planet, NBD.</p>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    </nav>
+  </header>
+  <main>
+    <div ng-view></div>
+  </main>
+  <footer class="page-footer light-green accent-2">
     <div class="footer-copyright">
       <div class="container">
-      Made by <a class="brown-text text-lighten-3">Elnaz Shahla</a>
+        Made by <a class="brown-text text-lighten-3">Elnaz Shahla</a>
       </div>
     </div>
   </footer>
+  <div id="login" class="modal">
+    <div class="modal-content">
+      <form ng-submit="main.doLogin()">
+        <div class="input-field ">
+          <i class="material-icons prefix">email</i>
+          <input id="icon_prefix" type="text" class="validate" ng-model="main.loginData.email">
+          <label for="icon_prefix">email</label>
+        </div>
+        <div class="input-field ">
+          <i class="material-icons prefix">lock</i>
+          <input id="icon_lock" type="password" class="validate" ng-model="main.loginData.password">
+          <label for="icon_lock">Password</label>
+        </div>
+        <div class="input-field modal-footer">
+          <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal" id="signup" ng-controller="userCreateController as signup">
+      <form class="col s12" ng-submit="signup.saveUser()">
+        <div class="modal-content">
+          <div class="input-field col s6">
+            <input id="user_name" type="text" class="validate" ng-model="signup.user.username">
+            <label for="user_name">Username</label>
+          </div>
+            <div class="input-field col s6">
+              <input id="email" type="email" class="validate" ng-model="signup.user.email">
+              <label for="email">Email</label>
+            </div>
+          <div class="input-field col s6">
+            <input id="password" type="password" class="validate" ng-model="signup.user.password">
+            <label for="password">Password</label>
+          </div>
+          <div class="input-field col s6">
+            <button type="submit" name="button" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</button>
+          </div>
+        </div>
 
-  </body>
+      </form>
+    </div>
+</body>
 </html>

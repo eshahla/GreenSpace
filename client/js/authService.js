@@ -9,9 +9,9 @@
 
   function Auth( $http, $q, AuthToken ){
     var authFactory = {}
-    authFactory.login = function(username, password){
-        return $http.post('/api/v1/signin', {
-            username: username,
+    authFactory.login = function(email, password){
+        return $http.post('http://localhost:3000/api/v1/signin', {
+            email: email,
             password: password
         })
         .success(function(data){
@@ -30,7 +30,7 @@
     }
     authFactory.getUser = function(){
         if ( AuthToken.getToken() )
-            return $http.get('/api/v1/me')
+            return $http.get('http://localhost:3000/api/v1/me', {cache: true})
         else
             return $q.reject({message: 'User has no token'})
 
